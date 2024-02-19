@@ -1,0 +1,13 @@
+<li>
+  <span>{{$ctrl.comment.autor}}</span>
+  <p>{{$ctrl.comment.message}}</p>
+  <a href="#">Ответить</a>
+  <div ng-if="$ctrl.comment.replies && $ctrl.comment.replies.length">
+    <ul>
+      <comment-item
+        ng-repeat="reply in $ctrl.comment.replies"
+        comment="reply"
+      ></comment-item>
+    </ul>
+  </div>
+</li>
