@@ -60,7 +60,70 @@ main {
   border-bottom: 1px solid white;
 }
 
+.user-menu__item a:hover {
+  border-bottom: none;
+}
+
 .footer {
   min-height: 35px;
   background-color: #003040;
+}
+
+.comments {
+  list-style: none;
+}
+
+.comments:first-child {
+  padding: 0;
+}
+
+.comment {
+  margin-bottom: 25px;
+  margin-top: 25px;
+}
+
+.comment__header {
+  display: flex;
+}
+
+.comment__body {
+  margin-left: 42px;
+  margin-bottom: 5px;
+}
+
+.user {
+}
+
+.user__pic {
+  margin-right: 10px;
+}
+
+.user__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user__name {
+  font-weight: 600;
+}
+
+.user__time {
+  color: grey;
+  font-size: 13px;
+}
+
+.comment__footer {
+  width: max-content;
+  height: 19px;
+  box-sizing: border-box;
+  display: block;
+  margin-left: 42px;
+  /* margin-bottom: 15px; */
+  color: #004359;
+  text-decoration: none;
+  border-bottom: 1px dashed #004359;
+}
+
+.comment__footer:hover {
+  border-bottom: none;
 }
