@@ -6,27 +6,42 @@ import "./components/angular-components/app-header/app-header.module";
 import "./components/angular-components/app-footer/app-footer.module";
 
 angular
-  .module("myApp", [
-    "commentCounterAdapter",
-    "commentList",
-    "commentItem",
-    "appHeader",
-    "appFooter",
-  ])
+  .module("myApp", ["commentCounterAdapter", "commentList", "commentItem", "appHeader", "appFooter"])
   .controller("MainController", [
     "$scope",
     function MainController($scope) {
       $scope.count = 0;
     },
   ])
-  .service("CommentService", function ($http) {
+  .service("CommentService", function ($http, $q) {
     this.loading = false;
     this.commentsCount = 0;
 
     this.getComments = function () {
       this.loading = true;
-      return $http
-        .get("https://1d8c8445-040b-4f3e-98f7-9d961ae570da.mock.pstmn.io")
+
+      let firstFakeRequest = $http.get("https://1d8c8445-040b-4f3e-98f7-9d961ae570da.mock.pstmn.io/api/first-fake");
+      let secondFakeRequest = $http.get("https://1d8c8445-040b-4f3e-98f7-9d961ae570da.mock.pstmn.io/api/second-fake");
+      let commentsRequest = $http.get("https://1d8c8445-040b-4f3e-98f7-9d961ae570da.mock.pstmn.io/api/comments");
+
+      function delayRequest(request) {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            request.then(resolve).catch(reject);
+          }, Math.floor(Math.random() * 2700) + 300);
+        });
+      }
+
+      let firstFakeRequestPromise = delayRequest(firstFakeRequest);
+      let secondFakeRequestPromise = delayRequest(secondFakeRequest);
+      let commentsRequestPromise = delayRequest(commentsRequest);
+
+      return $q
+        .all([commentsRequestPromise, firstFakeRequestPromise, secondFakeRequestPromise])
+        .then(function (responses) {
+          let commentsResponse = responses[0];
+          return commentsResponse;
+        })
         .finally(
           function () {
             this.loading = false;
