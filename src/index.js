@@ -15,7 +15,7 @@ angular
   ])
   .controller("MainController", ["$scope", function MainController($scope) {}])
   .service("CommentService", function () {
-    const comments = [
+    const allComments = [
       {
         autor: "Вася",
         message:
@@ -34,6 +34,12 @@ angular
               },
             ],
           },
+          {
+            autor: "Dasha",
+            message:
+              "No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful.",
+            replies: [],
+          },
         ],
       },
       {
@@ -45,7 +51,7 @@ angular
     ];
 
     this.getComments = function () {
-      return comments;
+      return allComments;
     };
 
     this.addComment = function (comment) {
@@ -56,7 +62,18 @@ angular
       comments.splice(index, 1);
     };
 
-    this.getCommentsCount = function () {
-      return comments.length;
+    this.getCommentsCount = function (comments = allComments) {
+      let count = 0;
+
+      if (!comments || comments.length === 0) {
+        return count;
+      }
+
+      comments.forEach((comment) => {
+        count++;
+        count += this.getCommentsCount(comment.replies);
+      });
+
+      return count;
     };
   });
