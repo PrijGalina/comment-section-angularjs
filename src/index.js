@@ -13,45 +13,25 @@ angular
     "appHeader",
     "appFooter",
   ])
-  .controller("MainController", ["$scope", function MainController($scope) {}])
-  .service("CommentService", function () {
-    const allComments = [
-      {
-        autor: "Вася",
-        message:
-          "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.",
-        replies: [
-          {
-            autor: "Петя",
-            message:
-              "No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful.",
-            replies: [
-              {
-                autor: "Sasha",
-                message:
-                  "And expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.",
-                replies: [],
-              },
-            ],
-          },
-          {
-            autor: "Dasha",
-            message:
-              "No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful.",
-            replies: [],
-          },
-        ],
-      },
-      {
-        autor: "Маша",
-        message:
-          "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. ",
-        replies: [],
-      },
-    ];
+  .controller("MainController", [
+    "$scope",
+    function MainController($scope) {
+      $scope.count = 0;
+    },
+  ])
+  .service("CommentService", function ($http) {
+    this.loading = false;
+    this.commentsCount = 0;
 
     this.getComments = function () {
-      return allComments;
+      this.loading = true;
+      return $http
+        .get("https://1d8c8445-040b-4f3e-98f7-9d961ae570da.mock.pstmn.io")
+        .finally(
+          function () {
+            this.loading = false;
+          }.bind(this)
+        );
     };
 
     this.addComment = function (comment) {
@@ -62,7 +42,7 @@ angular
       comments.splice(index, 1);
     };
 
-    this.getCommentsCount = function (comments = allComments) {
+    this.getCommentsCount = function (comments) {
       let count = 0;
 
       if (!comments || comments.length === 0) {

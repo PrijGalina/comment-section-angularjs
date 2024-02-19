@@ -1,4 +1,5 @@
-<ul>
+<div ng-show="loading">Загрузка...</div>
+<ul ng-hide="loading" class="comments">
   <comment-item
     ng-repeat="comment in comments"
     comment="comment"
