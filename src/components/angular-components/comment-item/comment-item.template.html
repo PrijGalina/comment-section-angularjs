@@ -4,27 +4,19 @@
       width="32"
       height="32"
       class="user__pic"
-      src="{{($ctrl.comment.autor.gender === 'male') ? 'https://img.icons8.com/dusk/64/000000/user.png' : 'https://img.icons8.com/dusk/64/person-female.png' }}"
+      ng-src="{{($ctrl.comment.autor.gender === 'male') ? 'https://img.icons8.com/dusk/64/000000/user.png' : 'https://img.icons8.com/dusk/64/person-female.png' }}"
       alt="user"
     />
     <div class="user__info">
       <span class="user__name">{{$ctrl.comment.autor.name}}</span>
-      <time class="user__time" datetime="2024-02-19T10:30:00"
-        >19 фев 2024 в 10:30</time
-      >
+      <time class="user__time" datetime="2024-02-19T10:30:00">19 фев 2024 в 10:30</time>
     </div>
   </div>
 
   <blockquote class="comment__body">{{$ctrl.comment.message}}</blockquote>
   <a class="comment__footer" href="#">Ответить</a>
 
-  <ul
-    class="comments"
-    ng-if="$ctrl.comment.replies && $ctrl.comment.replies.length"
-  >
-    <comment-item
-      ng-repeat="reply in $ctrl.comment.replies"
-      comment="reply"
-    ></comment-item>
+  <ul class="comments" ng-if="$ctrl.comment.replies && $ctrl.comment.replies.length">
+    <comment-item ng-repeat="reply in $ctrl.comment.replies" comment="reply"></comment-item>
   </ul>
 </li>

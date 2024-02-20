@@ -1,8 +1,5 @@
-<div ng-show="loading">Загрузка...</div>
+<preloader ng-show="loading"></preloader>
 <ul ng-hide="loading" class="comments">
-  <comment-item
-    ng-repeat="comment in comments"
-    comment="comment"
-  ></comment-item>
+  <comment-item ng-repeat="comment in comments" comment="comment"></comment-item>
 </ul>
 <!-- on-delete="$ctrl.deleteHero(hero)" on-update="$ctrl.updateHero(hero, prop, value)" -->
