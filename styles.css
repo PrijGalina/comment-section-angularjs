@@ -101,6 +101,7 @@ main {
 .comment__body {
   margin-left: 42px;
   margin-bottom: 5px;
+  margin-right: 15px;
 }
 
 .user {
@@ -155,4 +156,28 @@ main {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.reply-form {
+  display: flex;
+  flex-direction: column;
+  margin-left: 42px;
+  margin-top: 15px;
+  margin-right: 15px;
+}
+
+.reply-form__field {
+  resize: none;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.form__buttons {
+  display: flex;
+}
+
+.reply-form__submit {
+}
+
+.reply-form__close {
 }
