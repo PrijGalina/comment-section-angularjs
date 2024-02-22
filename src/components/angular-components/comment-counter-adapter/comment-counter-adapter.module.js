@@ -1,7 +1,7 @@
 import * as React from "react";
 import { createRoot } from "react-dom/client";
 import template from "./comment-counter-adapter.template.html";
-import { CommentCounter } from "../../react-components/сomment-сounter";
+import { CommentCounter } from "../../react-components/comment-counter";
 
 angular.module("commentCounterAdapter", []).component("commentCounterAdapter", {
   template: template,
