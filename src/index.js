@@ -4,13 +4,15 @@ import "./components/angular-components/comment-list/comment-list.module";
 import "./components/angular-components/comment-item/comment-item.module";
 import "./components/angular-components/app-header/app-header.module";
 import "./components/angular-components/app-footer/app-footer.module";
+import "./components/angular-components/preloader/preloader.module";
+import "./components/angular-components/reply-form/reply-form.module";
 
 angular
-  .module("myApp", ["commentCounterAdapter", "commentList", "commentItem", "appHeader", "appFooter"])
+  .module("myApp", ["commentCounterAdapter", "commentList", "commentItem", "appHeader", "appFooter", "preloader", "replyForm"])
   .controller("MainController", [
     "$scope",
     function MainController($scope) {
-      $scope.count = 0;
+      $scope.commentsCount = 0;
     },
   ])
   .service("CommentService", function ($http, $q) {
@@ -19,7 +21,6 @@ angular
 
     this.getComments = function () {
       this.loading = true;
-
       let firstFakeRequest = $http.get("https://1d8c8445-040b-4f3e-98f7-9d961ae570da.mock.pstmn.io/api/first-fake");
       let secondFakeRequest = $http.get("https://1d8c8445-040b-4f3e-98f7-9d961ae570da.mock.pstmn.io/api/second-fake");
       let commentsRequest = $http.get("https://1d8c8445-040b-4f3e-98f7-9d961ae570da.mock.pstmn.io/api/comments");

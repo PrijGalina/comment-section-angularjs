@@ -2,10 +2,8 @@
   <a class="header__link" href="https://www.livejournal.com">
     <span class="header__logo">LiveJournal</span>
   </a>
-  <ul class="header__nav user-menu">
-    <li class="user-menu__item">UserName</li>
-    <li class="user-menu__item">
-      <a href="#">Выйти</a>
-    </li>
-  </ul>
+  <a href="#" class="header__nav user-menu" ng-click="$ctrl.logout($event)">
+    <span class="user-menu__name">{{userName}}</span>
+    <span class="user-menu__logout"></span>
+  </a>
 </header>
