@@ -85,7 +85,7 @@ main {
   list-style: none;
 }
 
-.comments:first-child {
+.comments--top {
   padding: 0;
 }
 
@@ -126,17 +126,25 @@ main {
 }
 
 .comment__footer {
+  display: flex;
+}
+
+.comment__link {
   width: max-content;
   height: 19px;
   box-sizing: border-box;
   display: block;
-  margin-left: 42px;
+  margin-left: 15px;
   color: #004359;
   text-decoration: none;
   border-bottom: 1px dashed #004359;
 }
 
-.comment__footer:hover {
+.comment__link:first-of-type {
+  margin-left: 42px;
+}
+
+.comment__link:hover {
   border-bottom: none;
 }
 

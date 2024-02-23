@@ -4,6 +4,11 @@ export const authenticatedUserData = {
   gender: "male",
 };
 
+export const typeReply = {
+  add: "add",
+  edit: "edit",
+};
+
 export const avatarPaths = {
   male: "https://img.icons8.com/dusk/64/000000/user.png",
   female: "https://img.icons8.com/dusk/64/person-female.png",

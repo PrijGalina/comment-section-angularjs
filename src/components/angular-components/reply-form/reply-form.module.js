@@ -1,9 +1,16 @@
 import template from "./reply-form.template.html";
 import { generateUniqueId } from "../../../utils";
+import { typeReply } from "../../../const";
 
 angular.module("replyForm", []).component("replyForm", {
   template,
   controller: function ($scope, AuthService, CommentService) {
+    this.value = $scope.$parent.$parent.comment?.comment || "";
+    this.type = typeReply.add;
+    if (this.value !== "") {
+      $scope.replyText = this.value;
+      this.type = typeReply.edit;
+    }
     $scope.addReply = (event) => {
       event.preventDefault();
       const parentId = $scope.$parent.$parent.commentId;
@@ -19,10 +26,15 @@ angular.module("replyForm", []).component("replyForm", {
         replies: [],
       };
       CommentService.addComment(undefined, parentId, reply);
-      let currentCommentCount = CommentService.getCurrentCommentCount(); //!
-      CommentService.setCommentCount(currentCommentCount + 1); //!
+      CommentService.setCommentCount(CommentService.getCurrentCommentCount() + 1);
       $scope.replyText = "";
       $scope.$parent.$parent.showReplyForm = false;
+    };
+
+    $scope.editReply = (event) => {
+      event.preventDefault();
+      //TODO: реализовать обработчик $scope.editReply -> вызывать CommentService.editComment
+      console.log("here! edit comment event");
     };
 
     $scope.closeForm = () => {
