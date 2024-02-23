@@ -14,7 +14,19 @@
   </div>
 
   <blockquote class="comment__body">{{$ctrl.comment.comment}}</blockquote>
-  <a class="comment__footer" href="#" ng-click="$ctrl.addReplyToComment($event, $ctrl.comment.id)">Ответить</a>
+  <div class="comment__footer">
+    <a class="comment__link" href="#" ng-click="$ctrl.addReplyToComment($event, $ctrl.comment.id)">Ответить</a>
+    <a ng-if="$ctrl.userId === $ctrl.comment.autor.id" class="comment__link" href="#" ng-click="$ctrl.editComment($event, $ctrl.comment)"
+      >Редактировать</a
+    >
+    <a
+      ng-if="$ctrl.userId === $ctrl.comment.autor.id"
+      class="comment__link"
+      href="#"
+      ng-click="$ctrl.deleteComment($event, $ctrl.comment.id)"
+      >Удалить</a
+    >
+  </div>
 
   <div ng-if="showReplyForm">
     <reply-form></reply-form>

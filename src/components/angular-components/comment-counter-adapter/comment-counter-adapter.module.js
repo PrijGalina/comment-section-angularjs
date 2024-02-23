@@ -5,29 +5,18 @@ import template from "./comment-counter-adapter.template.html";
 
 angular.module("commentCounterAdapter", []).component("commentCounterAdapter", {
   template: template,
-  bindings: {
-    commentCount: "<",
-  },
-  controller: function () {
+  controller: function ($scope, CommentService) {
     const reactAppRootElem = document.getElementById("react-app");
     const reactAppRoot = createRoot(reactAppRootElem);
-
-    this.$onInit = () => {
-      reactAppRoot.render(
-        React.createElement(CommentCounter, {
-          commentCount: this.commentCount,
-        })
-      );
-    };
-
-    this.$onChanges = (changes) => {
-      const { commentCount } = changes;
-
-      reactAppRoot.render(
-        React.createElement(CommentCounter, {
-          commentCount: commentCount.currentValue,
-        })
-      );
-    };
+    $scope.$watch(
+      () => CommentService.commentCount,
+      (newVal, oldVal) => {
+        reactAppRoot.render(
+          React.createElement(CommentCounter, {
+            commentCount: newVal,
+          })
+        );
+      }
+    );
   },
 });

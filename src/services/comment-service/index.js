@@ -78,9 +78,19 @@ commentService.service("CommentService", function ($http, $q) {
     this.commentCount = value;
   };
 
-  //TODO: removeComment and editComment
-  this.removeComment = (index) => {
-    comments.splice(index, 1);
+  this.removeComment = (comments = this.commentsList, id) => {
+    comments.forEach((comment, index) => {
+      if (comment.id === id) {
+        comments.splice(index, 1);
+      } else {
+        this.removeComment(comment.replies, id);
+      }
+    });
+  };
+
+  //TODO: editComment
+  this.editComment = (comments = this.commentsList, parentId, reply) => {
+    console.log("CommentService editComment");
   };
 
   return this;
