@@ -6,7 +6,7 @@ import template from "./comment-counter-adapter.template.html";
 angular.module("commentCounterAdapter", []).component("commentCounterAdapter", {
   template: template,
   bindings: {
-    commentsCount: "<",
+    commentCount: "<",
   },
   controller: function () {
     const reactAppRootElem = document.getElementById("react-app");
@@ -15,17 +15,17 @@ angular.module("commentCounterAdapter", []).component("commentCounterAdapter", {
     this.$onInit = () => {
       reactAppRoot.render(
         React.createElement(CommentCounter, {
-          commentsCount: this.commentsCount,
+          commentCount: this.commentCount,
         })
       );
     };
 
     this.$onChanges = (changes) => {
-      const { commentsCount } = changes;
+      const { commentCount } = changes;
 
       reactAppRoot.render(
         React.createElement(CommentCounter, {
-          commentsCount: commentsCount.currentValue,
+          commentCount: commentCount.currentValue,
         })
       );
     };

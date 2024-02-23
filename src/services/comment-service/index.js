@@ -4,7 +4,7 @@ const commentService = angular.module("myApp.commentServices", []);
 
 commentService.service("CommentService", function ($http, $q) {
   this.loading = false;
-  this.commentsCount = 0;
+  this.commentCount = 0;
   this.commentsList = [];
 
   this.getComments = () => {
@@ -57,7 +57,9 @@ commentService.service("CommentService", function ($http, $q) {
     return false;
   };
 
-  this.getCommentsCount = (comments) => {
+  this.getCurrentCommentCount = () => this.commentCount;
+
+  this.getCommentCount = (comments) => {
     let count = 0;
 
     if (!comments || comments.length === 0) {
@@ -66,10 +68,14 @@ commentService.service("CommentService", function ($http, $q) {
 
     comments.forEach((comment) => {
       count++;
-      count += this.getCommentsCount(comment.replies);
+      count += this.getCommentCount(comment.replies);
     });
 
     return count;
+  };
+
+  this.setCommentCount = (value) => {
+    this.commentCount = value;
   };
 
   //TODO: removeComment and editComment

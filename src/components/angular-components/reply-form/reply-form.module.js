@@ -19,6 +19,8 @@ angular.module("replyForm", []).component("replyForm", {
         replies: [],
       };
       CommentService.addComment(undefined, parentId, reply);
+      let currentCommentCount = CommentService.getCurrentCommentCount(); //!
+      CommentService.setCommentCount(currentCommentCount + 1); //!
       $scope.replyText = "";
       $scope.$parent.$parent.showReplyForm = false;
     };
