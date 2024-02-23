@@ -4,7 +4,7 @@
       width="32"
       height="32"
       class="user__pic"
-      ng-src="{{($ctrl.comment.autor.gender === 'male') ? 'https://img.icons8.com/dusk/64/000000/user.png' : 'https://img.icons8.com/dusk/64/person-female.png' }}"
+      ng-src="{{($ctrl.comment.autor.gender === 'male') ? $ctrl.avatarPaths.male : $ctrl.avatarPaths.female }}"
       alt="user"
     />
     <div class="user__info">

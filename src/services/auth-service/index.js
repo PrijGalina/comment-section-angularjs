@@ -1,6 +1,8 @@
 import { authenticatedUserData } from "../../const";
 
-export function AuthService() {
+const authService = angular.module("myApp.authService", []);
+
+authService.service("AuthService", function () {
   this.userId = authenticatedUserData.id;
   this.userName = authenticatedUserData.name;
   this.userGender = authenticatedUserData.gender;
@@ -16,4 +18,6 @@ export function AuthService() {
   this.getUserGender = () => {
     return this.userGender;
   };
-}
+
+  return this;
+});

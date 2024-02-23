@@ -4,34 +4,26 @@ import { generateUniqueId } from "../../../utils";
 angular.module("replyForm", []).component("replyForm", {
   template,
   controller: function ($scope, AuthService, CommentService) {
-    $scope.addReply = function (event) {
+    $scope.addReply = (event) => {
       event.preventDefault();
       const parentId = $scope.$parent.$parent.commentId;
-      const replyId = generateUniqueId();
-      const replyText = $scope.replyText;
-      const userId = AuthService.getUserId();
-      const userName = AuthService.getUserName();
-      const userGender = AuthService.getUserGender();
-      const currentMoment = new Date().toISOString();
-
       const reply = {
-        id: replyId,
+        id: generateUniqueId(),
         autor: {
-          id: userId,
-          name: userName,
-          gender: userGender,
+          id: AuthService.getUserId(),
+          name: AuthService.getUserName(),
+          gender: AuthService.getUserGender(),
         },
-        comment: replyText,
-        date: currentMoment,
+        comment: $scope.replyText,
+        date: new Date().toISOString(),
         replies: [],
       };
-
       CommentService.addComment(undefined, parentId, reply);
       $scope.replyText = "";
-      $scope.$parent.$parent.showReplyForm = false; // Скрываем форму после отправки комментария
+      $scope.$parent.$parent.showReplyForm = false;
     };
 
-    $scope.closeForm = function () {
+    $scope.closeForm = () => {
       $scope.$parent.$parent.showReplyForm = false;
     };
   },

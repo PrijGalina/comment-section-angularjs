@@ -5,25 +5,23 @@ angular.module("commentList", []).component("commentList", {
   bindings: {
     commentsCount: "=",
   },
-  controller: function ($scope, $element, $attrs, CommentService) {
+  controller: function ($scope, CommentService) {
     $scope.comments = [];
 
     $scope.$watch(
-      function () {
-        return CommentService.loading;
-      },
-      function (newVal, oldVal) {
+      () => CommentService.loading,
+      (newVal, oldVal) => {
         $scope.loading = newVal;
       }
     );
 
-    this.$onInit = function () {
+    this.$onInit = () => {
       CommentService.getComments()
         .then((response) => {
           $scope.comments = response.data;
           this.commentsCount = CommentService.getCommentsCount(response.data);
         })
-        .catch(function (error) {
+        .catch((error) => {
           console.error("Ошибка при получении комментариев:", error);
         });
     };

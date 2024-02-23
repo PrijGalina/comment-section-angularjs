@@ -4,8 +4,6 @@ const comments = require("../data/comments.json");
 const firstFake = require("../data/first_fake.json");
 const secondFake = require("../data/second_fake.json");
 
-// const cache = JSON.parse(JSON.stringify(comments))
-
 const server = http.createServer((req, res) => {}).listen(8081, () => {});
 
 server.on("request", (req, resp) => {
@@ -13,7 +11,7 @@ server.on("request", (req, resp) => {
     resp.setHeader("Content-Type", "text/json");
     resp.setHeader("Access-Control-Allow-Origin", "*");
     resp.setHeader("Access-Control-Allow-Methods", "OPTIONS, GET");
-    resp.setHeader("Access-Control-Max-Age", 2592000); // 30 days
+    resp.setHeader("Access-Control-Max-Age", 2592000);
     resp.end(JSON.stringify(comments), "utf-8");
   }
 });

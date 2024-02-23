@@ -12,7 +12,7 @@ angular.module("commentItem", []).component("commentItem", {
 
     this.avatarPaths = avatarPaths;
 
-    this.addReplyToComment = function (event, commentId) {
+    this.addReplyToComment = (event, commentId) => {
       event.preventDefault();
       $scope.showReplyForm = true;
       $scope.commentId = commentId;
