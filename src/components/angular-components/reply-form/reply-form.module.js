@@ -1,21 +1,32 @@
 import template from "./reply-form.template.html";
+import { generateUniqueId } from "../../../utils";
 
 angular.module("replyForm", []).component("replyForm", {
   template,
-  controller: function ($scope) {
-    //$scope.showReplyForm = false;
-
-    $scope.addReply = function (event) {
+  controller: function ($scope, AuthService, CommentService) {
+    $scope.addReply = (event) => {
       event.preventDefault();
-      console.log("commentId = ", $scope.$parent.$parent.commentId);
-      console.log("newReply = ", $scope.newReply);
-      //$scope.newReply = "";
-      //$scope.$parent.$parent.showReplyForm = false; // Скрываем форму после отправки комментария
+      const parentId = $scope.$parent.$parent.commentId;
+      const reply = {
+        id: generateUniqueId(),
+        autor: {
+          id: AuthService.getUserId(),
+          name: AuthService.getUserName(),
+          gender: AuthService.getUserGender(),
+        },
+        comment: $scope.replyText,
+        date: new Date().toISOString(),
+        replies: [],
+      };
+      CommentService.addComment(undefined, parentId, reply);
+      let currentCommentCount = CommentService.getCurrentCommentCount(); //!
+      CommentService.setCommentCount(currentCommentCount + 1); //!
+      $scope.replyText = "";
+      $scope.$parent.$parent.showReplyForm = false;
     };
 
-    $scope.closeForm = function () {
+    $scope.closeForm = () => {
       $scope.$parent.$parent.showReplyForm = false;
-      console.log("close", $scope.$parent.$parent);
     };
   },
 });

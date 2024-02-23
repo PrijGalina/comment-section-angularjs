@@ -1,4 +1,5 @@
 import template from "./comment-item.template.html";
+import { avatarPaths } from "../../../const";
 
 angular.module("commentItem", []).component("commentItem", {
   template: template,
@@ -9,11 +10,12 @@ angular.module("commentItem", []).component("commentItem", {
     $scope.showReplyForm = false;
     $scope.commentId = null;
 
-    this.addReplyToComment = function (event, commentId) {
+    this.avatarPaths = avatarPaths;
+
+    this.addReplyToComment = (event, commentId) => {
       event.preventDefault();
       $scope.showReplyForm = true;
       $scope.commentId = commentId;
-      console.log("click", commentId);
     };
   },
 });

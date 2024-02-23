@@ -3,27 +3,26 @@ import template from "./comment-list.template.html";
 angular.module("commentList", []).component("commentList", {
   template,
   bindings: {
-    commentsCount: "=",
+    commentCount: "=",
   },
-  controller: function ($scope, $element, $attrs, CommentService) {
+  controller: function ($scope, CommentService) {
     $scope.comments = [];
 
     $scope.$watch(
-      function () {
-        return CommentService.loading;
-      },
-      function (newVal, oldVal) {
+      () => CommentService.loading,
+      (newVal, oldVal) => {
         $scope.loading = newVal;
       }
     );
 
-    this.$onInit = function () {
+    this.$onInit = () => {
       CommentService.getComments()
         .then((response) => {
           $scope.comments = response.data;
-          this.commentsCount = CommentService.getCommentsCount(response.data);
+          this.commentCount = CommentService.getCommentCount(response.data);
+          CommentService.setCommentCount(this.commentCount);
         })
-        .catch(function (error) {
+        .catch((error) => {
           console.error("Ошибка при получении комментариев:", error);
         });
     };

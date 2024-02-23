@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack serve --mode development --open"
+    "start": "webpack serve --mode development --open",
+    "server": "node src/api/index.js",
+    "start-windows": "start npm run start && start npm run server",
+    "start-unix": "webpack serve --mode development --open & node src/api/index.js"
   },
   "author": "",
   "license": "ISC",

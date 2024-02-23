@@ -1,12 +1,11 @@
 import template from "./app-header.template.html";
-import { authenticatedUserData } from "../../../const";
 
 angular.module("appHeader", []).component("appHeader", {
   template,
-  controller: function ($scope) {
-    $scope.userName = authenticatedUserData.name;
+  controller: function ($scope, AuthService) {
+    $scope.userName = AuthService.getUserName();
 
-    this.logout = function (event) {
+    this.logout = (event) => {
       event.preventDefault();
     };
   },
