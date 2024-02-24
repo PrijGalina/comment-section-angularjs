@@ -140,6 +140,11 @@ main {
   border-bottom: 1px dashed #004359;
 }
 
+.comment__link--disable {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .comment__link:first-of-type {
   margin-left: 42px;
 }

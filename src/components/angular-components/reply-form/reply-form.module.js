@@ -29,16 +29,19 @@ angular.module("replyForm", []).component("replyForm", {
       CommentService.setCommentCount(CommentService.getCurrentCommentCount() + 1);
       $scope.replyText = "";
       $scope.$parent.$parent.showReplyForm = false;
+      $scope.$parent.$parent.isDisable = false;
     };
 
     $scope.editReply = (event) => {
       event.preventDefault();
       //TODO: реализовать обработчик $scope.editReply -> вызывать CommentService.editComment
       console.log("here! edit comment event");
+      $scope.$parent.$parent.isDisable = false;
     };
 
     $scope.closeForm = () => {
       $scope.$parent.$parent.showReplyForm = false;
+      $scope.$parent.$parent.isDisable = false;
     };
   },
 });
