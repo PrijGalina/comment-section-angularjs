@@ -138,31 +138,35 @@ main {
   font-size: 13px;
 }
 
-.comment__footer {
+.comment__control-tools {
   display: flex;
 }
 
-.comment__link {
+.control-tools__btn {
+  display: block;
   width: max-content;
   height: 19px;
-  box-sizing: border-box;
-  display: block;
+  padding: 0;
   margin-left: 15px;
+  box-sizing: border-box;
   color: #004359;
-  text-decoration: none;
+  background: transparent;
+  border: none;
   border-bottom: 1px dashed #004359;
+  cursor: pointer;
 }
 
-.comment__link--disable {
+.control-tools__btn--disable {
   opacity: 0.5;
+  cursor: default;
   pointer-events: none;
 }
 
-.comment__link:first-of-type {
+.control-tools__btn:first-of-type {
   margin-left: 42px;
 }
 
-.comment__link:hover {
+.control-tools__btn:hover {
   border-bottom: none;
 }
 
