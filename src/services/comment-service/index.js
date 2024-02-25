@@ -88,9 +88,20 @@ commentService.service("CommentService", function ($http, $q) {
     });
   };
 
-  //TODO: editComment
-  this.editComment = (comments = this.commentsList, parentId, reply) => {
-    console.log("CommentService editComment");
+  this.editComment = (comments = this.commentsList, id, reply, newText) => {
+    comments.forEach((comment, index) => {
+      if (comment.id === id) {
+        comments.splice(index, 1);
+        const newReply = {
+          ...comment,
+          comment: newText,
+          date: new Date().toISOString(),
+        };
+        comments.push(newReply);
+      } else {
+        this.editComment(comment.replies, id, reply, newText);
+      }
+    });
   };
 
   return this;

@@ -15,8 +15,20 @@
 
   <blockquote class="comment__body">{{$ctrl.comment.comment}}</blockquote>
   <div class="comment__footer">
-    <a class="comment__link" href="#" ng-click="$ctrl.addReplyToComment($event, $ctrl.comment.id)">Ответить</a>
-    <a ng-if="$ctrl.userId === $ctrl.comment.autor.id" class="comment__link" href="#" ng-click="$ctrl.editComment($event, $ctrl.comment)"
+    <a
+      class="comment__link"
+      href="#"
+      ng-if="$ctrl.userId !== $ctrl.comment.autor.id"
+      ng-click="$ctrl.addReplyToComment($event, $ctrl.comment.id)"
+      ng-class="{ 'comment__link--disable': isDisable }"
+      >Ответить</a
+    >
+    <a
+      ng-if="$ctrl.userId === $ctrl.comment.autor.id"
+      class="comment__link"
+      href="#"
+      ng-click="$ctrl.editComment($event, $ctrl.comment)"
+      ng-class="{ 'comment__link--disable': isDisable }"
       >Редактировать</a
     >
     <a
@@ -24,6 +36,7 @@
       class="comment__link"
       href="#"
       ng-click="$ctrl.deleteComment($event, $ctrl.comment.id)"
+      ng-class="{ 'comment__link--disable': isDisable }"
       >Удалить</a
     >
   </div>

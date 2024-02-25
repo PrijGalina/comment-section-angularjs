@@ -9,6 +9,7 @@ angular.module("commentItem", []).component("commentItem", {
   controller: function ($scope, AuthService, CommentService) {
     $scope.showReplyForm = false;
     $scope.commentId = null;
+    $scope.isDisable = false;
     //TODO: поправить кошмарное форматирование prettier в comment-item.template.html
     this.avatarPaths = avatarPaths;
     this.userId = $scope.userName = AuthService.getUserId();
@@ -17,6 +18,7 @@ angular.module("commentItem", []).component("commentItem", {
       event.preventDefault();
       $scope.showReplyForm = true;
       $scope.commentId = commentId;
+      $scope.isDisable = true;
     };
 
     this.deleteComment = (event, commentId) => {
@@ -30,6 +32,8 @@ angular.module("commentItem", []).component("commentItem", {
       event.preventDefault();
       $scope.showReplyForm = true;
       $scope.comment = comment;
+      $scope.commentId = comment.id;
+      $scope.isDisable = true;
     };
   },
 });
