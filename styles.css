@@ -102,6 +102,19 @@ main {
   margin-left: 42px;
   margin-bottom: 5px;
   margin-right: 15px;
+  position: relative;
+}
+
+.comment__body::before {
+  content: "";
+  position: absolute;
+  top: -53px;
+  z-index: -1;
+  bottom: -28px;
+  left: -45px;
+  right: 0px;
+  display: block;
+  background-color: #c2cde71f;
 }
 
 .user {

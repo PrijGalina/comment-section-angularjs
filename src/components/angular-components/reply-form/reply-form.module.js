@@ -34,8 +34,11 @@ angular.module("replyForm", []).component("replyForm", {
 
     $scope.editReply = (event) => {
       event.preventDefault();
-      //TODO: реализовать обработчик $scope.editReply -> вызывать CommentService.editComment
-      console.log("here! edit comment event");
+      const commentId = $scope.$parent.$parent.commentId;
+      const comment = $scope.$parent.$parent.comment;
+      CommentService.editComment(undefined, commentId, comment, $scope.replyText);
+      $scope.replyText = "";
+      $scope.$parent.$parent.showReplyForm = false;
       $scope.$parent.$parent.isDisable = false;
     };
 

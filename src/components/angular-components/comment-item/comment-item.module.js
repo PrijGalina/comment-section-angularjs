@@ -32,6 +32,7 @@ angular.module("commentItem", []).component("commentItem", {
       event.preventDefault();
       $scope.showReplyForm = true;
       $scope.comment = comment;
+      $scope.commentId = comment.id;
       $scope.isDisable = true;
     };
   },
