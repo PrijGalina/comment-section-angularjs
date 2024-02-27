@@ -1,5 +1,5 @@
-import template from "./preloader.template.html";
+import template from './preloader.template.html';
 
-angular.module("preloader", []).component("preloader", {
-  template,
+angular.module('preloader', []).component('preloader', {
+  template
 });

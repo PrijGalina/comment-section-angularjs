@@ -1,8 +1,8 @@
-import { authenticatedUserData } from "../../const";
+import { authenticatedUserData } from '../../const';
 
-const authService = angular.module("myApp.authService", []);
+const authService = angular.module('myApp.authService', []);
 
-authService.service("AuthService", function () {
+authService.service('AuthService', function () {
   this.userId = authenticatedUserData.id;
   this.userName = authenticatedUserData.name;
   this.userGender = authenticatedUserData.gender;

@@ -1,14 +1,14 @@
-import template from "./reply-form.template.html";
-import { generateUniqueId } from "../../../utils";
-import { typeReply } from "../../../const";
+import template from './reply-form.template.html';
+import { generateUniqueId } from '../../../utils';
+import { typeReply } from '../../../const';
 
-angular.module("replyForm", []).component("replyForm", {
+angular.module('replyForm', []).component('replyForm', {
   template,
   controller: function ($scope, AuthService, CommentService, FormService) {
-    this.value = $scope.$parent.$parent.comment?.comment || "";
+    this.value = $scope.$parent.$parent.comment?.comment || '';
     this.type = typeReply.add;
 
-    if (this.value !== "") {
+    if (this.value !== '') {
       $scope.replyText = this.value;
       this.type = typeReply.edit;
     }
@@ -21,15 +21,15 @@ angular.module("replyForm", []).component("replyForm", {
         autor: {
           id: AuthService.getUserId(),
           name: AuthService.getUserName(),
-          gender: AuthService.getUserGender(),
+          gender: AuthService.getUserGender()
         },
         comment: $scope.replyText,
         date: new Date().toISOString(),
-        replies: [],
+        replies: []
       };
       CommentService.addComment(undefined, parentId, reply);
       CommentService.setCommentCount(CommentService.getCurrentCommentCount() + 1);
-      $scope.replyText = "";
+      $scope.replyText = '';
       FormService.close();
     };
 
@@ -38,12 +38,12 @@ angular.module("replyForm", []).component("replyForm", {
       const commentId = $scope.$parent.$parent.commentId;
       const comment = $scope.$parent.$parent.comment;
       CommentService.editComment(undefined, commentId, comment, $scope.replyText);
-      $scope.replyText = "";
+      $scope.replyText = '';
       FormService.close();
     };
 
     $scope.closeForm = () => {
       FormService.close();
     };
-  },
+  }
 });

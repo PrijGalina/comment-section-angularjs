@@ -1,20 +1,19 @@
-import template from "./comment-item.template.html";
-import { avatarPaths } from "../../../const";
+import template from './comment-item.template.html';
+import { avatarPaths } from '../../../const';
 
-angular.module("commentItem", []).component("commentItem", {
+angular.module('commentItem', []).component('commentItem', {
   template: template,
   bindings: {
-    comment: "<",
+    comment: '<'
   },
   controller: function ($scope, AuthService, CommentService, FormService) {
     $scope.commentId = null;
-    //TODO: поправить кошмарное форматирование prettier в comment-item.template.html
     this.avatarPaths = avatarPaths;
     this.userId = $scope.userName = AuthService.getUserId();
 
     $scope.$watch(
       () => FormService.openForm,
-      (newVal, oldVal) => {
+      (newVal) => {
         $scope.openForm = newVal;
       }
     );
@@ -40,5 +39,5 @@ angular.module("commentItem", []).component("commentItem", {
       $scope.comment = comment;
       $scope.commentId = comment.id;
     };
-  },
+  }
 });

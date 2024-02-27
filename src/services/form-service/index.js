@@ -1,6 +1,6 @@
-const formService = angular.module("myApp.formService", []);
+const formService = angular.module('myApp.formService', []);
 
-formService.service("FormService", function () {
+formService.service('FormService', function () {
   this.openForm = null;
 
   this.isOpen = () => this.openForm !== null;

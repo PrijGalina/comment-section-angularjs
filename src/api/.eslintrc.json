@@ -1,0 +1,11 @@
+{
+  "env": {
+    "es2022": true,
+    "browser": true
+  },
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "node": true,
+    "sourceType": "module"
+  }
+}

@@ -1,12 +1,6 @@
 <li class="comment">
   <div class="comment__header user">
-    <img
-      width="32"
-      height="32"
-      class="user__pic"
-      ng-src="{{($ctrl.comment.autor.gender === 'male') ? $ctrl.avatarPaths.male : $ctrl.avatarPaths.female }}"
-      alt="user"
-    />
+    <img width="32" height="32" class="user__pic" ng-src="{{($ctrl.comment.autor.gender === 'male') ? $ctrl.avatarPaths.male : $ctrl.avatarPaths.female }}" alt="user" />
     <div class="user__info">
       <span class="user__name">{{$ctrl.comment.autor.name}}</span>
       <time class="user__time" datetime="{{$ctrl.comment.date}}">{{$ctrl.comment.date | date:'dd.MM.yyyy в HH:mm'}}</time>

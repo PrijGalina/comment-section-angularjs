@@ -1,5 +1,5 @@
-import template from "./app-footer.template.html";
+import template from './app-footer.template.html';
 
-angular.module("appFooter", []).component("appFooter", {
-  template,
+angular.module('appFooter', []).component('appFooter', {
+  template
 });
