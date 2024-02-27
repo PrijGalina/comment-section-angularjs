@@ -1,0 +1,14 @@
+/dist
+/node_modules
+
+webpack.config.js
+.eslintrc
+.prettierrc
+
+*.jpg
+*.png
+*.pdf
+
+*.git
+*.yml
+*.md

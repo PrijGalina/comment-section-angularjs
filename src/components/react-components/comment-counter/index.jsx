@@ -1,5 +1,5 @@
-import * as React from "react";
-import { getModifiedWord } from "../../../utils";
+import * as React from 'react';
+import { getModifiedWord } from '../../../utils';
 
 export const CommentCounter = (props) => {
   const { commentCount } = props;

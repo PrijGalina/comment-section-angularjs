@@ -1,5 +1,10 @@
 {
   "editor.minimap.maxColumn": 200,
   "editor.wordWrapColumn": 200,
-  "editor.wordWrap": "off"
+  "editor.wordWrap": "off",
+  "html.completion.attributeDefaultValue": "singlequotes",
+  "prettier.singleQuote": true,
+  "prettier.jsxSingleQuote": true,
+  "javascript.preferences.quoteStyle": "single",
+  "typescript.preferences.quoteStyle": "single"
 }

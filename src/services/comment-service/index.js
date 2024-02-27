@@ -1,16 +1,16 @@
-import { requestPaths } from "../../const";
+import { requestPaths } from '../../const';
 
-const commentService = angular.module("myApp.commentServices", []);
+const commentService = angular.module('myApp.commentServices', []);
 
-commentService.service("CommentService", function ($http, $q) {
+commentService.service('CommentService', function ($http, $q) {
   this.loading = false;
   this.commentCount = 0;
   this.commentsList = [];
 
   this.getComments = () => {
     this.loading = true;
-    let firstFakeRequest = $http.get(requestPaths.first_fake);
-    let secondFakeRequest = $http.get(requestPaths.second_fake);
+    let firstFakeRequest = $http.get(requestPaths.firstFake);
+    let secondFakeRequest = $http.get(requestPaths.secondFake);
     let commentsRequest = $http.get(requestPaths.comments);
 
     const delayRequest = (request) =>
@@ -95,7 +95,7 @@ commentService.service("CommentService", function ($http, $q) {
         const newReply = {
           ...comment,
           comment: newText,
-          date: new Date().toISOString(),
+          date: new Date().toISOString()
         };
         comments.push(newReply);
       } else {

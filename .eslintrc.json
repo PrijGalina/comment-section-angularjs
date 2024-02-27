@@ -1,0 +1,23 @@
+{
+  "env": {
+    "browser": true,
+    "es2022": true
+  },
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["angular"],
+  "rules": {
+    "semi": ["error", "always"],
+    "quotes": ["error", "single"],
+    "indent": ["error", 2],
+    "no-console": ["warn", { "allow": ["log"] }],
+    "no-unused-vars": "error",
+    "camelcase": "error",
+    "no-extra-semi": "error",
+    "no-mixed-spaces-and-tabs": "error",
+    "arrow-spacing": "error",
+    "angular/no-controller": "error"
+  }
+}

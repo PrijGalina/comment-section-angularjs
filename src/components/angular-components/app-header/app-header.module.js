@@ -1,6 +1,6 @@
-import template from "./app-header.template.html";
+import template from './app-header.template.html';
 
-angular.module("appHeader", []).component("appHeader", {
+angular.module('appHeader', []).component('appHeader', {
   template,
   controller: function ($scope, AuthService) {
     $scope.userName = AuthService.getUserName();
@@ -8,5 +8,5 @@ angular.module("appHeader", []).component("appHeader", {
     this.logout = (event) => {
       event.preventDefault();
     };
-  },
+  }
 });

@@ -1,12 +1,6 @@
 <li class="comment">
   <div class="comment__header user">
-    <img
-      width="32"
-      height="32"
-      class="user__pic"
-      ng-src="{{($ctrl.comment.autor.gender === 'male') ? $ctrl.avatarPaths.male : $ctrl.avatarPaths.female }}"
-      alt="user"
-    />
+    <img width="32" height="32" class="user__pic" ng-src="{{($ctrl.comment.autor.gender === 'male') ? $ctrl.avatarPaths.male : $ctrl.avatarPaths.female }}" alt="user" />
     <div class="user__info">
       <span class="user__name">{{$ctrl.comment.autor.name}}</span>
       <time class="user__time" datetime="{{$ctrl.comment.date}}">{{$ctrl.comment.date | date:'dd.MM.yyyy в HH:mm'}}</time>
@@ -14,34 +8,35 @@
   </div>
 
   <blockquote class="comment__body">{{$ctrl.comment.comment}}</blockquote>
-  <div class="comment__footer">
-    <a
-      class="comment__link"
-      href="#"
+
+  <div class="comment__control-tools control-tools">
+    <button
+      class="control-tools__btn"
       ng-if="$ctrl.userId !== $ctrl.comment.autor.id"
       ng-click="$ctrl.addReplyToComment($event, $ctrl.comment.id)"
-      ng-class="{ 'comment__link--disable': isDisable }"
-      >Ответить</a
+      ng-class="{ 'control-tools__btn--disable': $ctrl.comment.id === openForm }"
     >
-    <a
+      Ответить
+    </button>
+    <button
       ng-if="$ctrl.userId === $ctrl.comment.autor.id"
-      class="comment__link"
-      href="#"
+      class="control-tools__btn"
       ng-click="$ctrl.editComment($event, $ctrl.comment)"
-      ng-class="{ 'comment__link--disable': isDisable }"
-      >Редактировать</a
+      ng-class="{ 'control-tools__btn--disable': $ctrl.comment.id === openForm }"
     >
-    <a
+      Редактировать
+    </button>
+    <button
       ng-if="$ctrl.userId === $ctrl.comment.autor.id"
-      class="comment__link"
-      href="#"
+      class="control-tools__btn"
       ng-click="$ctrl.deleteComment($event, $ctrl.comment.id)"
-      ng-class="{ 'comment__link--disable': isDisable }"
-      >Удалить</a
+      ng-class="{ 'control-tools__btn--disable': $ctrl.comment.id === openForm }"
     >
+      Удалить
+    </button>
   </div>
 
-  <div ng-if="showReplyForm">
+  <div ng-if="$ctrl.comment.id === openForm">
     <reply-form></reply-form>
   </div>
 
